@@ -190,6 +190,51 @@
     }
     .stat .lbl { font-size: .82rem; color: var(--muted); margin-top: .2rem; }
 
+    /* ── CHANGELOG ── */
+    .changelog {
+      padding: 4rem 1.5rem;
+      display: flex; flex-direction: column; align-items: center;
+      background: var(--bg);
+    }
+    .changelog h2 {
+      font-size: 1.8rem; font-weight: 700; color: var(--white);
+      text-align: center; margin-bottom: .4rem;
+    }
+    .changelog .sub {
+      color: var(--muted); text-align: center; margin-bottom: 2.5rem; font-size: .95rem;
+    }
+    .changelog-list {
+      max-width: 720px; width: 100%;
+      display: flex; flex-direction: column; gap: 1.2rem;
+    }
+    .cl-entry {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1.4rem 1.6rem;
+      display: grid; grid-template-columns: auto 1fr; gap: .6rem 1.2rem;
+      align-items: start;
+    }
+    .cl-entry.latest { border-color: var(--teal); box-shadow: 0 0 20px rgba(0,212,170,.1); }
+    .cl-version {
+      font-size: .78rem; font-weight: 800; letter-spacing: .05em;
+      color: var(--teal); white-space: nowrap; padding-top: .15rem;
+    }
+    .cl-badge-new {
+      display: inline-block; background: var(--teal); color: #0d1525;
+      font-size: .65rem; font-weight: 800; padding: .1rem .45rem;
+      border-radius: 4px; margin-left: .4rem; letter-spacing: .04em;
+      vertical-align: middle;
+    }
+    .cl-date {
+      grid-column: 1; font-size: .75rem; color: var(--muted); white-space: nowrap;
+    }
+    .cl-content { grid-row: span 2; }
+    .cl-title {
+      font-size: .95rem; font-weight: 700; color: var(--white); margin-bottom: .5rem;
+    }
+    .cl-items { list-style: none; display: flex; flex-direction: column; gap: .3rem; }
+    .cl-items li { font-size: .85rem; color: var(--muted); }
+    .cl-items li::before { content: "→  "; color: var(--teal); font-weight: 700; }
+
     /* ── PRICING ── */
     .pricing {
       padding: 4rem 1.5rem;
@@ -333,6 +378,7 @@
   <div class="nav-links">
     <a href="#caracteristicas">Características</a>
     <a href="#capturas">Capturas</a>
+    <a href="#novedades">Novedades</a>
     <a href="#precios">Precios</a>
     <a href="#faq">FAQ</a>
   </div>
@@ -443,6 +489,55 @@
       <h3>3 modos de trabajo</h3>
       <p><strong>Mover, Copiar o Simular</strong> — prueba sin riesgo antes de tocar nada.</p>
     </div>
+  </div>
+</section>
+
+<!-- CHANGELOG -->
+<section class="changelog" id="novedades">
+  <p class="section-label">Historial de versiones</p>
+  <h2>Siempre mejorando</h2>
+  <p class="sub">FotoVault Pro se actualiza regularmente con nuevas funciones y correcciones</p>
+  <div class="changelog-list">
+
+    <div class="cl-entry latest">
+      <div class="cl-version">v10.2.0 <span class="cl-badge-new">NUEVO</span></div>
+      <div class="cl-content">
+        <div class="cl-title">Mejoras de rendimiento y estabilidad</div>
+        <ul class="cl-items">
+          <li>Velocidad de procesamiento mejorada en lotes grandes</li>
+          <li>Corrección de errores en la detección de similares (pHash)</li>
+          <li>Interfaz más fluida en la pantalla de resumen</li>
+        </ul>
+      </div>
+      <div class="cl-date">Junio 2026</div>
+    </div>
+
+    <div class="cl-entry">
+      <div class="cl-version">v10.1.1</div>
+      <div class="cl-content">
+        <div class="cl-title">Corrección del asistente de inicio</div>
+        <ul class="cl-items">
+          <li>Solucionado error en el wizard de primeros pasos</li>
+          <li>Mejoras en la conversión HEIC en Windows 11</li>
+        </ul>
+      </div>
+      <div class="cl-date">Mayo 2026</div>
+    </div>
+
+    <div class="cl-entry">
+      <div class="cl-version">v10.0.0</div>
+      <div class="cl-content">
+        <div class="cl-title">Rediseño completo de la interfaz</div>
+        <ul class="cl-items">
+          <li>Nueva interfaz bilingüe (ES / EN)</li>
+          <li>Detección de fotos borrosas incorporada</li>
+          <li>Informe PDF al finalizar cada sesión</li>
+          <li>Modo Simular para previsualizar sin riesgo</li>
+        </ul>
+      </div>
+      <div class="cl-date">Abril 2026</div>
+    </div>
+
   </div>
 </section>
 

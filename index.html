@@ -125,6 +125,40 @@
     .dl-btn-sub { font-size: .68rem; color: #666; line-height: 1.4; }
     .dl-btn-main { font-size: .95rem; font-weight: 700; color: #000; line-height: 1.3; }
 
+    /* ── LANG SWITCHER ── */
+    .nav-right { display: flex; align-items: center; gap: .6rem; }
+    .lang-wrap { position: relative; }
+    .lang-btn {
+      display: flex; align-items: center; gap: 5px;
+      background: transparent; color: var(--muted);
+      border: 1px solid var(--border);
+      padding: .38rem .7rem; border-radius: 7px;
+      font-size: .85rem; cursor: pointer;
+      transition: border-color .2s, color .2s;
+    }
+    .lang-wrap:hover .lang-btn { border-color: var(--teal); color: var(--text); }
+    .lang-btn .lchev { font-size: .65rem; transition: transform .2s; }
+    .lang-wrap:hover .lchev { transform: rotate(180deg); }
+    .lang-dropdown {
+      display: none; position: absolute; top: 100%; right: 0;
+      padding-top: 8px; min-width: 155px; z-index: 99;
+    }
+    .lang-wrap:hover .lang-dropdown { display: block; }
+    .lang-dropdown-inner {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 10px; padding: 6px;
+      box-shadow: 0 8px 24px rgba(0,0,0,.4);
+      display: flex; flex-direction: column; gap: 2px;
+    }
+    .lang-option {
+      display: flex; align-items: center; gap: 8px;
+      padding: .4rem .8rem; border-radius: 6px;
+      font-size: .85rem; color: var(--muted);
+      cursor: pointer; transition: background .15s, color .15s;
+    }
+    .lang-option:hover { background: rgba(0,212,170,.1); color: var(--teal); }
+    .lang-option.active { color: var(--teal); font-weight: 600; }
+
     /* ── NAV DOWNLOAD DROPDOWN ── */
     .nav-dl-wrap { position: relative; }
     .nav-dl-btn {
@@ -418,27 +452,39 @@
     <span>FotoVault Pro</span>
   </div>
   <div class="nav-links">
-    <a href="#caracteristicas">Características</a>
-    <a href="#capturas">Capturas</a>
-    <a href="#novedades">Novedades</a>
-    <a href="#precios">Precios</a>
+    <a href="#caracteristicas" data-i18n="nav-features">Características</a>
+    <a href="#capturas" data-i18n="nav-screenshots">Capturas</a>
+    <a href="#novedades" data-i18n="nav-whats-new">Novedades</a>
+    <a href="#precios" data-i18n="nav-pricing">Precios</a>
     <a href="#faq">FAQ</a>
   </div>
+  <div class="nav-right">
+  <div class="lang-wrap">
+    <div class="lang-btn"><span id="lang-flag">🇪🇸</span> <span class="lchev">▾</span></div>
+    <div class="lang-dropdown"><div class="lang-dropdown-inner">
+      <div class="lang-option active" onclick="switchLang('es')">🇪🇸 Español</div>
+      <div class="lang-option" onclick="switchLang('en')">🇬🇧 English</div>
+      <div class="lang-option" onclick="switchLang('fr')">🇫🇷 Français</div>
+      <div class="lang-option" onclick="switchLang('de')">🇩🇪 Deutsch</div>
+      <div class="lang-option" onclick="switchLang('it')">🇮🇹 Italiano</div>
+      <div class="lang-option" onclick="switchLang('pt')">🇵🇹 Português</div>
+    </div></div>
+  </div>
   <div class="nav-dl-wrap">
-    <div class="nav-dl-btn">⬇ Descargar Demo <span class="chevron">▾</span></div>
+    <div class="nav-dl-btn"><span data-i18n="nav-download">⬇ Descargar Demo</span> <span class="chevron">▾</span></div>
     <div class="nav-dropdown">
      <div class="nav-dropdown-inner">
       <a class="dl-btn" href="https://github.com/znorit/organizador-fotos-releases/releases/latest/download/FotoVaultPro_DEMO_Setup.exe">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="#1b1f23"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12z"/></svg>
         <div class="dl-btn-text">
-          <span class="dl-btn-sub">Descargar Demo Gratis en</span>
+          <span class="dl-btn-sub" data-i18n="dl-free-on">Descargar Demo Gratis en</span>
           <span class="dl-btn-main">GitHub</span>
         </div>
       </a>
       <a class="dl-btn" href="https://apps.microsoft.com/detail/9PNRNC9872L6" target="_blank" rel="noopener">
         <svg width="18" height="18" viewBox="0 0 21 21" fill="none"><rect x="0" y="0" width="10" height="10" fill="#f25022"/><rect x="11" y="0" width="10" height="10" fill="#7fba00"/><rect x="0" y="11" width="10" height="10" fill="#00a4ef"/><rect x="11" y="11" width="10" height="10" fill="#ffb900"/></svg>
         <div class="dl-btn-text">
-          <span class="dl-btn-sub">Descargar Demo Gratis en</span>
+          <span class="dl-btn-sub" data-i18n="dl-free-on">Descargar Demo Gratis en</span>
           <span class="dl-btn-main">Microsoft Store</span>
         </div>
       </a>
@@ -449,15 +495,15 @@
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-badge">✦ Versión 10.3.0 · Windows 10/11</div>
+  <div class="hero-badge" data-i18n="hero-badge">✦ Versión 10.3.0 · Windows 10/11</div>
   <img src="img/logo.png" alt="FotoVault Pro" class="hero-logo" />
-  <h1>Organiza y protege<br /><span>tus recuerdos</span>, sin perder nada</h1>
-  <p>FotoVault Pro clasifica automáticamente miles de fotos y vídeos por fecha, separa duplicados, similares y borrosas en carpetas aparte, convierte HEIC y corrige rotaciones. <strong>Nunca elimina ningún archivo.</strong></p>
+  <h1 data-i18n-html="hero-h1">Organiza y protege<br /><span>tus recuerdos</span>, sin perder nada</h1>
+  <p data-i18n-html="hero-p">FotoVault Pro clasifica automáticamente miles de fotos y vídeos por fecha, separa duplicados, similares y borrosas en carpetas aparte, convierte HEIC y corrige rotaciones. <strong>Nunca elimina ningún archivo.</strong></p>
   <div class="dl-group">
     <a class="dl-btn" href="https://github.com/znorit/organizador-fotos-releases/releases/latest/download/FotoVaultPro_DEMO_Setup.exe">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="#1b1f23"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12z"/></svg>
       <div class="dl-btn-text">
-        <span class="dl-btn-sub">Descargar Demo Gratis en</span>
+        <span class="dl-btn-sub" data-i18n="dl-free-on">Descargar Demo Gratis en</span>
         <span class="dl-btn-main">GitHub</span>
       </div>
     </a>
@@ -465,7 +511,7 @@
     <a class="dl-btn" href="https://apps.microsoft.com/detail/9PNRNC9872L6" target="_blank" rel="noopener">
       <svg width="20" height="20" viewBox="0 0 21 21" fill="none"><rect x="0" y="0" width="10" height="10" fill="#f25022"/><rect x="11" y="0" width="10" height="10" fill="#7fba00"/><rect x="0" y="11" width="10" height="10" fill="#00a4ef"/><rect x="11" y="11" width="10" height="10" fill="#ffb900"/></svg>
       <div class="dl-btn-text">
-        <span class="dl-btn-sub">Descargar Demo Gratis en</span>
+        <span class="dl-btn-sub" data-i18n="dl-free-on">Descargar Demo Gratis en</span>
         <span class="dl-btn-main">Microsoft Store</span>
       </div>
     </a>
@@ -476,14 +522,14 @@
     </a>
   </div>
   <div class="hero-meta">
-    <span>Sin instalación de dependencias</span>
-    <span>No borra tus archivos</span>
-    <span>Bilingüe ES/EN</span>
-    <span>Sin pagos recurrentes</span>
+    <span data-i18n="meta-1">Sin instalación de dependencias</span>
+    <span data-i18n="meta-2">No borra tus archivos</span>
+    <span data-i18n="meta-3">6 idiomas disponibles</span>
+    <span data-i18n="meta-4">Sin pagos recurrentes</span>
   </div>
   <div class="security-notice">
     <span class="icon">🛡️</span>
-    <div>
+    <div data-i18n-html="security-notice">
       <strong>¿Windows muestra un aviso de seguridad?</strong> Es normal en software independiente.
       Haz clic en <strong>"Más información"</strong> y luego en <strong>"Ejecutar de todas formas"</strong>.
       Tu privacidad y tus fotos están completamente seguras. <a href="#faq" style="color:var(--teal)">Ver más →</a>
@@ -493,18 +539,18 @@
 
 <!-- STATS -->
 <div class="stats">
-  <div class="stat"><div class="num">3</div><div class="lbl">Modos de trabajo</div></div>
-  <div class="stat"><div class="num">SHA-256</div><div class="lbl">Detección exacta de duplicados</div></div>
-  <div class="stat"><div class="num">pHash</div><div class="lbl">Detección de similares</div></div>
-  <div class="stat"><div class="num">HEIC</div><div class="lbl">Conversión iPhone nativa</div></div>
-  <div class="stat"><div class="num">0</div><div class="lbl">Archivos borrados sin permiso</div></div>
+  <div class="stat"><div class="num">3</div><div class="lbl" data-i18n="stat-1">Modos de trabajo</div></div>
+  <div class="stat"><div class="num">SHA-256</div><div class="lbl" data-i18n="stat-2">Detección exacta de duplicados</div></div>
+  <div class="stat"><div class="num">pHash</div><div class="lbl" data-i18n="stat-3">Detección de similares</div></div>
+  <div class="stat"><div class="num">HEIC</div><div class="lbl" data-i18n="stat-4">Conversión iPhone nativa</div></div>
+  <div class="stat"><div class="num">0</div><div class="lbl" data-i18n="stat-5">Archivos borrados sin permiso</div></div>
 </div>
 
 <!-- SCREENSHOTS -->
 <section class="screenshots" id="capturas">
-  <p class="section-label">Capturas de pantalla</p>
-  <h2>Mira FotoVault Pro en acción</h2>
-  <p class="sub">Interfaz clara y en español, con estadísticas en tiempo real</p>
+  <p class="section-label" data-i18n="ss-label">Capturas de pantalla</p>
+  <h2 data-i18n="ss-h2">Mira FotoVault Pro en acción</h2>
+  <p class="sub" data-i18n="ss-sub">Interfaz clara e intuitiva, con estadísticas en tiempo real</p>
   <div class="screenshots-grid">
     <img src="img/screenshot1.png" alt="Pantalla de bienvenida y guía de primeros pasos" loading="lazy" />
     <img src="img/screenshot2.png" alt="Proceso de copia con estadísticas en tiempo real" loading="lazy" />
@@ -515,62 +561,62 @@
 
 <!-- FEATURES -->
 <section class="features" id="caracteristicas">
-  <p class="section-label">Características</p>
-  <h2>Todo lo que necesitas para tu colección</h2>
+  <p class="section-label" data-i18n="feat-label">Características</p>
+  <h2 data-i18n="feat-h2">Todo lo que necesitas para tu colección</h2>
   <div class="features-grid">
     <div class="feature-card">
       <div class="feature-icon">📅</div>
-      <h3>Organización automática por fecha</h3>
-      <p>Crea carpetas por año y mes a partir de los metadatos EXIF de cada foto o vídeo.</p>
+      <h3 data-i18n="f1-t">Organización automática por fecha</h3>
+      <p data-i18n="f1-p">Crea carpetas por año y mes a partir de los metadatos EXIF de cada foto o vídeo.</p>
     </div>
     <div class="feature-card">
       <div class="feature-icon">🔍</div>
-      <h3>Detección de duplicados exactos</h3>
-      <p>Compara archivos byte a byte con SHA-256. Cero falsos positivos.</p>
+      <h3 data-i18n="f2-t">Detección de duplicados exactos</h3>
+      <p data-i18n="f2-p">Compara archivos byte a byte con SHA-256. Cero falsos positivos.</p>
     </div>
     <div class="feature-card">
       <div class="feature-icon">🖼️</div>
-      <h3>Imágenes similares (pHash)</h3>
-      <p>Encuentra fotos casi idénticas aunque tengan diferente nombre o tamaño.</p>
+      <h3 data-i18n="f3-t">Imágenes similares (pHash)</h3>
+      <p data-i18n="f3-p">Encuentra fotos casi idénticas aunque tengan diferente nombre o tamaño.</p>
     </div>
     <div class="feature-card">
       <div class="feature-icon">🌫️</div>
-      <h3>Detección de fotos borrosas</h3>
-      <p>Identifica imágenes sin foco y las separa automáticamente para revisión.</p>
+      <h3 data-i18n="f4-t">Detección de fotos borrosas</h3>
+      <p data-i18n="f4-p">Identifica imágenes sin foco y las separa automáticamente para revisión.</p>
     </div>
     <div class="feature-card">
       <div class="feature-icon">📱</div>
-      <h3>Conversión HEIC / HEIF</h3>
-      <p>Convierte el formato nativo de iPhone a JPG compatible con cualquier sistema.</p>
+      <h3 data-i18n="f5-t">Conversión HEIC / HEIF</h3>
+      <p data-i18n="f5-p">Convierte el formato nativo de iPhone a JPG compatible con cualquier sistema.</p>
     </div>
     <div class="feature-card">
       <div class="feature-icon">🔄</div>
-      <h3>Corrección de rotación</h3>
-      <p>Corrige automáticamente vídeos e imágenes girados sin perder calidad.</p>
+      <h3 data-i18n="f6-t">Corrección de rotación</h3>
+      <p data-i18n="f6-p">Corrige automáticamente vídeos e imágenes girados sin perder calidad.</p>
     </div>
     <div class="feature-card">
       <div class="feature-icon">🗑️</div>
-      <h3>Papelera Android</h3>
-      <p>Detecta y limpia los archivos de la papelera oculta de dispositivos Android.</p>
+      <h3 data-i18n="f7-t">Papelera Android</h3>
+      <p data-i18n="f7-p">Detecta y limpia los archivos de la papelera oculta de dispositivos Android.</p>
     </div>
     <div class="feature-card">
       <div class="feature-icon">📄</div>
-      <h3>Informe PDF</h3>
-      <p>Genera un reporte completo de todo lo que ha hecho la herramienta en cada sesión.</p>
+      <h3 data-i18n="f8-t">Informe PDF</h3>
+      <p data-i18n="f8-p">Genera un reporte completo de todo lo que ha hecho la herramienta en cada sesión.</p>
     </div>
     <div class="feature-card">
       <div class="feature-icon">⚙️</div>
-      <h3>3 modos de trabajo</h3>
-      <p><strong>Mover, Copiar o Simular</strong> — prueba sin riesgo antes de tocar nada.</p>
+      <h3 data-i18n="f9-t">3 modos de trabajo</h3>
+      <p data-i18n-html="f9-p"><strong>Mover, Copiar o Simular</strong> — prueba sin riesgo antes de tocar nada.</p>
     </div>
   </div>
 </section>
 
 <!-- CHANGELOG -->
 <section class="changelog" id="novedades">
-  <p class="section-label">Historial de versiones</p>
-  <h2>Siempre mejorando</h2>
-  <p class="sub">FotoVault Pro se actualiza regularmente con nuevas funciones y correcciones</p>
+  <p class="section-label" data-i18n="cl-label">Historial de versiones</p>
+  <h2 data-i18n="cl-h2">Siempre mejorando</h2>
+  <p class="sub" data-i18n="cl-sub">FotoVault Pro se actualiza regularmente con nuevas funciones y correcciones</p>
   <div class="changelog-list">
 
     <div class="cl-entry latest">
@@ -645,52 +691,52 @@
 
 <!-- PRICING -->
 <section class="pricing" id="precios">
-  <p class="section-label">Precios</p>
-  <h2>Elige tu licencia</h2>
-  <p class="sub">Empieza gratis con la demo, sin tarjeta de crédito</p>
+  <p class="section-label" data-i18n="pr-label">Precios</p>
+  <h2 data-i18n="pr-h2">Elige tu licencia</h2>
+  <p class="sub" data-i18n="pr-sub">Empieza gratis con la demo, sin tarjeta de crédito</p>
   <div class="pricing-cards">
     <div class="price-card">
-      <div class="plan">Demo gratuita</div>
+      <div class="plan" data-i18n="p1-plan">Demo gratuita</div>
       <div class="amount">€0</div>
-      <div class="desc">Prueba todas las funciones sin límite de tiempo</div>
+      <div class="desc" data-i18n="p1-desc">Prueba todas las funciones sin límite de tiempo</div>
       <ul>
-        <li>Todas las funciones incluidas</li>
-        <li>Sin registro</li>
+        <li data-i18n="p1-li1">Todas las funciones incluidas</li>
+        <li data-i18n="p1-li2">Sin registro</li>
         <li>Windows 10/11 (64‑bit)</li>
-        <li>Modo Simular para ver sin riesgo</li>
+        <li data-i18n="p1-li4">Modo Simular para ver sin riesgo</li>
       </ul>
-      <a class="btn-price outline" href="https://github.com/znorit/organizador-fotos-releases/releases/latest/download/FotoVaultPro_DEMO_Setup.exe">
+      <a class="btn-price outline" href="https://github.com/znorit/organizador-fotos-releases/releases/latest/download/FotoVaultPro_DEMO_Setup.exe" data-i18n="p1-btn">
         ⬇ Descargar Demo
       </a>
     </div>
     <div class="price-card featured">
-      <div class="badge-popular">Más popular</div>
-      <div class="plan">Licencia de por vida</div>
+      <div class="badge-popular" data-i18n="badge-popular">Más popular</div>
+      <div class="plan" data-i18n="p2-plan">Licencia de por vida</div>
       <div class="amount">€19<span>.99</span></div>
-      <div class="desc">Pago único · Actualizaciones futuras incluidas</div>
+      <div class="desc" data-i18n="p2-desc">Pago único · Actualizaciones futuras incluidas</div>
       <ul>
-        <li>Licencia permanente</li>
-        <li>Actualizaciones incluidas para siempre</li>
-        <li>Sin suscripción</li>
-        <li>Soporte por email</li>
+        <li data-i18n="p2-li1">Licencia permanente</li>
+        <li data-i18n="p2-li2">Actualizaciones incluidas para siempre</li>
+        <li data-i18n="p2-li3">Sin suscripción</li>
+        <li data-i18n="p2-li4">Soporte por email</li>
         <li>1 PC</li>
       </ul>
-      <a class="btn-price" href="https://payhip.com/b/yMA9w" target="_blank" rel="noopener">
+      <a class="btn-price" href="https://payhip.com/b/yMA9w" target="_blank" rel="noopener" data-i18n="p2-btn">
         Comprar licencia — €19.99
       </a>
     </div>
     <div class="price-card">
-      <div class="plan">Licencia 30 días</div>
+      <div class="plan" data-i18n="p3-plan">Licencia 30 días</div>
       <div class="amount">€2<span>.99</span></div>
-      <div class="desc">Pago único · Acceso completo durante 30 días</div>
+      <div class="desc" data-i18n="p3-desc">Pago único · Acceso completo durante 30 días</div>
       <ul>
-        <li>Todas las funciones incluidas</li>
-        <li>Válida 30 días desde la activación</li>
-        <li>Sin pagos recurrentes</li>
-        <li>Descarga inmediata tras el pago</li>
-        <li>Soporte por email</li>
+        <li data-i18n="p1-li1">Todas las funciones incluidas</li>
+        <li data-i18n="p3-li2">Válida 30 días desde la activación</li>
+        <li data-i18n="p2-li3">Sin pagos recurrentes</li>
+        <li data-i18n="p3-li4">Descarga inmediata tras el pago</li>
+        <li data-i18n="p2-li4">Soporte por email</li>
       </ul>
-      <a class="btn-price outline" href="https://payhip.com/b/hKzdB" target="_blank" rel="noopener">
+      <a class="btn-price outline" href="https://payhip.com/b/hKzdB" target="_blank" rel="noopener" data-i18n="p3-btn">
         Obtener licencia 30 días
       </a>
     </div>
@@ -699,12 +745,12 @@
 
 <!-- FAQ -->
 <section class="faq" id="faq">
-  <h2>Preguntas frecuentes</h2>
+  <h2 data-i18n="faq-h2">Preguntas frecuentes</h2>
   <div class="faq-list">
 
     <details>
-      <summary>Windows me muestra "Windows protegió su equipo". ¿Es seguro?</summary>
-      <div class="faq-body">
+      <summary data-i18n="faq-q1">Windows me muestra "Windows protegió su equipo". ¿Es seguro?</summary>
+      <div class="faq-body" data-i18n-html="faq-a1">
         Sí, es completamente seguro. Este aviso aparece en <strong>cualquier software independiente</strong> que no tenga un certificado de firma de código (que es muy caro). Para continuar:
         <ol>
           <li>Haz clic en <strong>"Más información"</strong></li>
@@ -715,36 +761,36 @@
     </details>
 
     <details>
-      <summary>¿FotoVault Pro puede borrar mis fotos sin que yo lo sepa?</summary>
-      <div class="faq-body">
+      <summary data-i18n="faq-q2">¿FotoVault Pro puede borrar mis fotos sin que yo lo sepa?</summary>
+      <div class="faq-body" data-i18n-html="faq-a2">
         No. El programa <strong>nunca borra archivos del origen</strong>. En modo Mover, traslada el archivo; en modo Copiar, mantiene el original intacto. Además, el <strong>Modo Simular</strong> te permite ver exactamente qué haría antes de ejecutar nada.
       </div>
     </details>
 
     <details>
-      <summary>¿Funciona con fotos de iPhone (HEIC)?</summary>
-      <div class="faq-body">
+      <summary data-i18n="faq-q3">¿Funciona con fotos de iPhone (HEIC)?</summary>
+      <div class="faq-body" data-i18n="faq-a3">
         Sí. FotoVault Pro convierte automáticamente los archivos HEIC/HEIF de iPhone a JPG estándar, sin necesidad de software adicional.
       </div>
     </details>
 
     <details>
-      <summary>¿Necesito instalar Python, .NET u otro programa?</summary>
-      <div class="faq-body">
+      <summary data-i18n="faq-q4">¿Necesito instalar Python, .NET u otro programa?</summary>
+      <div class="faq-body" data-i18n-html="faq-a4">
         No. FotoVault Pro es un ejecutable <strong>autónomo</strong>. No requiere ningún software adicional ni conexión a internet.
       </div>
     </details>
 
     <details>
-      <summary>¿Cuál es la diferencia entre la demo y la versión completa?</summary>
-      <div class="faq-body">
+      <summary data-i18n="faq-q5">¿Cuál es la diferencia entre la demo y la versión completa?</summary>
+      <div class="faq-body" data-i18n="faq-a5">
         La demo incluye todas las funciones del programa. La licencia desbloquea el uso sin restricciones para uso profesional o comercial y te da acceso a futuras versiones sin coste adicional.
       </div>
     </details>
 
     <details>
-      <summary>¿Cómo compro la licencia?</summary>
-      <div class="faq-body">
+      <summary data-i18n="faq-q6">¿Cómo compro la licencia?</summary>
+      <div class="faq-body" data-i18n-html="faq-a6">
         Es inmediato y sin registro previo. Haz clic en el botón de compra y serás redirigido a la página de pago seguro (Payhip). Una vez completado el pago, <strong>la aplicación y tu licencia se descargan automáticamente</strong> desde esa misma página. No necesitas contactar con nadie ni esperar ningún email.
       </div>
     </details>
@@ -754,13 +800,13 @@
 
 <!-- DOWNLOAD CTA BOTTOM -->
 <section class="cta-bottom">
-  <h2>¿Listo para ordenar tu colección de una vez?</h2>
-  <p>Descarga la demo gratis ahora. Sin registro, sin tarjeta, sin límite de tiempo.</p>
+  <h2 data-i18n="cta-h2">¿Listo para ordenar tu colección de una vez?</h2>
+  <p data-i18n="cta-p">Descarga la demo gratis ahora. Sin registro, sin tarjeta, sin límite de tiempo.</p>
   <div class="dl-group">
     <a class="dl-btn" href="https://github.com/znorit/organizador-fotos-releases/releases/latest/download/FotoVaultPro_DEMO_Setup.exe">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="#1b1f23"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12z"/></svg>
       <div class="dl-btn-text">
-        <span class="dl-btn-sub">Descargar Demo Gratis en</span>
+        <span class="dl-btn-sub" data-i18n="dl-free-on">Descargar Demo Gratis en</span>
         <span class="dl-btn-main">GitHub</span>
       </div>
     </a>
@@ -768,7 +814,7 @@
     <a class="dl-btn" href="https://apps.microsoft.com/detail/9PNRNC9872L6" target="_blank" rel="noopener">
       <svg width="20" height="20" viewBox="0 0 21 21" fill="none"><rect x="0" y="0" width="10" height="10" fill="#f25022"/><rect x="11" y="0" width="10" height="10" fill="#7fba00"/><rect x="0" y="11" width="10" height="10" fill="#00a4ef"/><rect x="11" y="11" width="10" height="10" fill="#ffb900"/></svg>
       <div class="dl-btn-text">
-        <span class="dl-btn-sub">Descargar Demo Gratis en</span>
+        <span class="dl-btn-sub" data-i18n="dl-free-on">Descargar Demo Gratis en</span>
         <span class="dl-btn-main">Microsoft Store</span>
       </div>
     </a>
@@ -788,6 +834,556 @@
     <a href="https://github.com/znorit/fotovault-pro">GitHub</a>
   </div>
 </footer>
+
+<script>
+const TRANSLATIONS = {
+  es: {
+    "nav-features":     "Funciones",
+    "nav-screenshots":  "Capturas",
+    "nav-whats-new":    "Novedades",
+    "nav-pricing":      "Precios",
+    "nav-download":     "Descargar Demo",
+    "dl-free-on":       "Descargar Demo Gratis en",
+    "hero-badge":       "✦ Versión 10.3.0 · Windows 10/11",
+    "hero-h1":          "Organiza y protege<br /><span>tus recuerdos</span>, sin perder nada",
+    "hero-p":           "FotoVault Pro clasifica automáticamente miles de fotos y vídeos por fecha, separa duplicados, similares y borrosas en carpetas aparte, convierte HEIC y corrige rotaciones. <strong>Nunca elimina ningún archivo.</strong>",
+    "meta-1":           "Sin instalación de dependencias",
+    "meta-2":           "No borra tus archivos",
+    "meta-3":           "6 idiomas disponibles",
+    "meta-4":           "Sin pagos recurrentes",
+    "security-notice":  "<strong>¿Windows muestra un aviso de seguridad?</strong> Es normal en software independiente. Haz clic en <strong>\"Más información\"</strong> y luego en <strong>\"Ejecutar de todas formas\"</strong>. Tu privacidad y tus fotos están completamente seguras. <a href=\"#faq\" style=\"color:var(--teal)\">Ver más →</a>",
+    "stat-1":           "Modos de trabajo",
+    "stat-2":           "Detección exacta de duplicados",
+    "stat-3":           "Detección de similares",
+    "stat-4":           "Conversión iPhone nativa",
+    "stat-5":           "Archivos borrados sin permiso",
+    "ss-label":         "Capturas de pantalla",
+    "ss-h2":            "Mira FotoVault Pro en acción",
+    "ss-sub":           "Interfaz clara e intuitiva, con estadísticas en tiempo real",
+    "feat-label":       "Características",
+    "feat-h2":          "Todo lo que necesitas para tu colección",
+    "f1-t":             "Organización automática por fecha",
+    "f1-p":             "Crea carpetas por año y mes a partir de los metadatos EXIF de cada foto o vídeo.",
+    "f2-t":             "Detección de duplicados exactos",
+    "f2-p":             "Compara archivos byte a byte con SHA-256. Cero falsos positivos.",
+    "f3-t":             "Imágenes similares (pHash)",
+    "f3-p":             "Encuentra fotos casi idénticas aunque tengan diferente nombre o tamaño.",
+    "f4-t":             "Detección de fotos borrosas",
+    "f4-p":             "Identifica imágenes sin foco y las separa automáticamente para revisión.",
+    "f5-t":             "Conversión HEIC / HEIF",
+    "f5-p":             "Convierte el formato nativo de iPhone a JPG compatible con cualquier sistema.",
+    "f6-t":             "Corrección de rotación",
+    "f6-p":             "Corrige automáticamente vídeos e imágenes girados sin perder calidad.",
+    "f7-t":             "Papelera Android",
+    "f7-p":             "Detecta y limpia los archivos de la papelera oculta de dispositivos Android.",
+    "f8-t":             "Informe PDF",
+    "f8-p":             "Genera un reporte completo de todo lo que ha hecho la herramienta en cada sesión.",
+    "f9-t":             "3 modos de trabajo",
+    "f9-p":             "<strong>Mover, Copiar o Simular</strong> — prueba sin riesgo antes de tocar nada.",
+    "cl-label":         "Historial de versiones",
+    "cl-h2":            "Siempre mejorando",
+    "cl-sub":           "FotoVault Pro se actualiza regularmente con nuevas funciones y correcciones",
+    "pr-label":         "Precios",
+    "pr-h2":            "Elige tu licencia",
+    "pr-sub":           "Empieza gratis con la demo, sin tarjeta de crédito",
+    "p1-plan":          "Demo gratuita",
+    "p1-desc":          "Prueba todas las funciones sin límite de tiempo",
+    "p1-li1":           "Todas las funciones incluidas",
+    "p1-li2":           "Sin registro",
+    "p1-li4":           "Modo Simular para ver sin riesgo",
+    "p1-btn":           "⬇ Descargar Demo",
+    "badge-popular":    "Más popular",
+    "p2-plan":          "Licencia de por vida",
+    "p2-desc":          "Pago único · Actualizaciones futuras incluidas",
+    "p2-li1":           "Licencia permanente",
+    "p2-li2":           "Actualizaciones incluidas para siempre",
+    "p2-li3":           "Sin suscripción",
+    "p2-li4":           "Soporte por email",
+    "p2-btn":           "Comprar licencia — €19.99",
+    "p3-plan":          "Licencia 30 días",
+    "p3-desc":          "Pago único · Acceso completo durante 30 días",
+    "p3-li2":           "Válida 30 días desde la activación",
+    "p3-li4":           "Descarga inmediata tras el pago",
+    "p3-btn":           "Obtener licencia 30 días",
+    "faq-h2":           "Preguntas frecuentes",
+    "faq-q1":           "Windows me muestra \"Windows protegió su equipo\". ¿Es seguro?",
+    "faq-a1":           "Sí, es completamente seguro. Este aviso aparece en <strong>cualquier software independiente</strong> que no tenga un certificado de firma de código (que es muy caro). Para continuar:<ol><li>Haz clic en <strong>\"Más información\"</strong></li><li>Luego en <strong>\"Ejecutar de todas formas\"</strong></li></ol>FotoVault Pro no accede a internet, no recopila datos y nunca borra archivos sin tu permiso.",
+    "faq-q2":           "¿FotoVault Pro puede borrar mis fotos sin que yo lo sepa?",
+    "faq-a2":           "No. El programa <strong>nunca borra archivos del origen</strong>. En modo Mover, traslada el archivo; en modo Copiar, mantiene el original intacto. Además, el <strong>Modo Simular</strong> te permite ver exactamente qué haría antes de ejecutar nada.",
+    "faq-q3":           "¿Funciona con fotos de iPhone (HEIC)?",
+    "faq-a3":           "Sí. FotoVault Pro convierte automáticamente los archivos HEIC/HEIF de iPhone a JPG estándar, sin necesidad de software adicional.",
+    "faq-q4":           "¿Necesito instalar Python, .NET u otro programa?",
+    "faq-a4":           "No. FotoVault Pro es un ejecutable <strong>autónomo</strong>. No requiere ningún software adicional ni conexión a internet.",
+    "faq-q5":           "¿Cuál es la diferencia entre la demo y la versión completa?",
+    "faq-a5":           "La demo incluye todas las funciones del programa. La licencia desbloquea el uso sin restricciones para uso profesional o comercial y te da acceso a futuras versiones sin coste adicional.",
+    "faq-q6":           "¿Cómo compro la licencia?",
+    "faq-a6":           "Es inmediato y sin registro previo. Haz clic en el botón de compra y serás redirigido a la página de pago seguro (Payhip). Una vez completado el pago, <strong>la aplicación y tu licencia se descargan automáticamente</strong> desde esa misma página. No necesitas contactar con nadie ni esperar ningún email.",
+    "cta-h2":           "¿Listo para ordenar tu colección de una vez?",
+    "cta-p":            "Descarga la demo gratis ahora. Sin registro, sin tarjeta, sin límite de tiempo."
+  },
+  en: {
+    "nav-features":     "Features",
+    "nav-screenshots":  "Screenshots",
+    "nav-whats-new":    "What's New",
+    "nav-pricing":      "Pricing",
+    "nav-download":     "Download Demo",
+    "dl-free-on":       "Download Free Demo on",
+    "hero-badge":       "✦ Version 10.3.0 · Windows 10/11",
+    "hero-h1":          "Organize and protect<br /><span>your memories</span>, without losing anything",
+    "hero-p":           "FotoVault Pro automatically sorts thousands of photos and videos by date, separates duplicates, similar shots and blurry images into separate folders, converts HEIC and fixes rotations. <strong>It never deletes any file.</strong>",
+    "meta-1":           "No dependencies required",
+    "meta-2":           "Never deletes your files",
+    "meta-3":           "6 languages available",
+    "meta-4":           "No recurring payments",
+    "security-notice":  "<strong>Windows showing a security warning?</strong> This is normal for independent software. Click <strong>\"More info\"</strong> and then <strong>\"Run anyway\"</strong>. Your privacy and your photos are completely safe. <a href=\"#faq\" style=\"color:var(--teal)\">Learn more →</a>",
+    "stat-1":           "Work modes",
+    "stat-2":           "Exact duplicate detection",
+    "stat-3":           "Similar image detection",
+    "stat-4":           "Native iPhone conversion",
+    "stat-5":           "Files deleted without permission",
+    "ss-label":         "Screenshots",
+    "ss-h2":            "See FotoVault Pro in action",
+    "ss-sub":           "Clean and intuitive interface, with real-time statistics",
+    "feat-label":       "Features",
+    "feat-h2":          "Everything you need for your collection",
+    "f1-t":             "Automatic date-based organization",
+    "f1-p":             "Creates folders by year and month from the EXIF metadata of each photo or video.",
+    "f2-t":             "Exact duplicate detection",
+    "f2-p":             "Compares files byte by byte with SHA-256. Zero false positives.",
+    "f3-t":             "Similar images (pHash)",
+    "f3-p":             "Finds nearly identical photos even if they have different names or sizes.",
+    "f4-t":             "Blurry photo detection",
+    "f4-p":             "Identifies out-of-focus images and automatically separates them for review.",
+    "f5-t":             "HEIC / HEIF conversion",
+    "f5-p":             "Converts iPhone's native format to JPG compatible with any system.",
+    "f6-t":             "Rotation correction",
+    "f6-p":             "Automatically corrects rotated videos and images without quality loss.",
+    "f7-t":             "Android trash cleaner",
+    "f7-p":             "Detects and cleans hidden trash files from Android devices.",
+    "f8-t":             "PDF report",
+    "f8-p":             "Generates a complete report of everything the tool did in each session.",
+    "f9-t":             "3 work modes",
+    "f9-p":             "<strong>Move, Copy or Simulate</strong> — test risk-free before touching anything.",
+    "cl-label":         "Version history",
+    "cl-h2":            "Always improving",
+    "cl-sub":           "FotoVault Pro is regularly updated with new features and fixes",
+    "pr-label":         "Pricing",
+    "pr-h2":            "Choose your license",
+    "pr-sub":           "Start free with the demo, no credit card needed",
+    "p1-plan":          "Free demo",
+    "p1-desc":          "Try all features with no time limit",
+    "p1-li1":           "All features included",
+    "p1-li2":           "No registration",
+    "p1-li4":           "Simulate mode to preview safely",
+    "p1-btn":           "⬇ Download Demo",
+    "badge-popular":    "Most popular",
+    "p2-plan":          "Lifetime license",
+    "p2-desc":          "One-time payment · Future updates included",
+    "p2-li1":           "Permanent license",
+    "p2-li2":           "Updates included forever",
+    "p2-li3":           "No subscription",
+    "p2-li4":           "Email support",
+    "p2-btn":           "Buy license — €19.99",
+    "p3-plan":          "30-day license",
+    "p3-desc":          "One-time payment · Full access for 30 days",
+    "p3-li2":           "Valid 30 days from activation",
+    "p3-li4":           "Instant download after payment",
+    "p3-btn":           "Get 30-day license",
+    "faq-h2":           "Frequently asked questions",
+    "faq-q1":           "Windows shows \"Windows protected your PC\". Is it safe?",
+    "faq-a1":           "Yes, it is completely safe. This warning appears with <strong>any independent software</strong> that doesn't have a code signing certificate (which is very expensive). To continue:<ol><li>Click <strong>\"More info\"</strong></li><li>Then click <strong>\"Run anyway\"</strong></li></ol>FotoVault Pro does not access the internet, does not collect data, and never deletes files without your permission.",
+    "faq-q2":           "Can FotoVault Pro delete my photos without me knowing?",
+    "faq-a2":           "No. The program <strong>never deletes files from the source</strong>. In Move mode it moves the file; in Copy mode it keeps the original intact. The <strong>Simulate mode</strong> also lets you see exactly what it would do before executing anything.",
+    "faq-q3":           "Does it work with iPhone photos (HEIC)?",
+    "faq-a3":           "Yes. FotoVault Pro automatically converts HEIC/HEIF files from iPhone to standard JPG, with no additional software needed.",
+    "faq-q4":           "Do I need to install Python, .NET or any other program?",
+    "faq-a4":           "No. FotoVault Pro is a <strong>standalone</strong> executable. It does not require any additional software or internet connection.",
+    "faq-q5":           "What is the difference between the demo and the full version?",
+    "faq-a5":           "The demo includes all program features. The license unlocks unrestricted use for professional or commercial purposes and gives you access to future versions at no extra cost.",
+    "faq-q6":           "How do I buy the license?",
+    "faq-a6":           "It's immediate and requires no prior registration. Click the purchase button and you'll be redirected to the secure payment page (Payhip). Once payment is complete, <strong>the app and your license download automatically</strong> from that same page. No need to contact anyone or wait for an email.",
+    "cta-h2":           "Ready to sort your collection once and for all?",
+    "cta-p":            "Download the free demo now. No registration, no credit card, no time limit."
+  },
+  fr: {
+    "nav-features":     "Fonctionnalités",
+    "nav-screenshots":  "Captures",
+    "nav-whats-new":    "Nouveautés",
+    "nav-pricing":      "Tarifs",
+    "nav-download":     "Télécharger Demo",
+    "dl-free-on":       "Télécharger gratuitement sur",
+    "hero-badge":       "✦ Version 10.3.0 · Windows 10/11",
+    "hero-h1":          "Organisez et protégez<br /><span>vos souvenirs</span>, sans rien perdre",
+    "hero-p":           "FotoVault Pro trie automatiquement des milliers de photos et vidéos par date, sépare les doublons, similaires et flous dans des dossiers distincts, convertit HEIC et corrige les rotations. <strong>Il ne supprime jamais aucun fichier.</strong>",
+    "meta-1":           "Aucune dépendance requise",
+    "meta-2":           "Ne supprime pas vos fichiers",
+    "meta-3":           "6 langues disponibles",
+    "meta-4":           "Sans abonnement récurrent",
+    "security-notice":  "<strong>Windows affiche un avertissement de sécurité ?</strong> C'est normal pour les logiciels indépendants. Cliquez sur <strong>\"Informations complémentaires\"</strong> puis sur <strong>\"Exécuter quand même\"</strong>. Votre vie privée et vos photos sont totalement protégées. <a href=\"#faq\" style=\"color:var(--teal)\">En savoir plus →</a>",
+    "stat-1":           "Modes de travail",
+    "stat-2":           "Détection exacte des doublons",
+    "stat-3":           "Détection d'images similaires",
+    "stat-4":           "Conversion iPhone native",
+    "stat-5":           "Fichiers supprimés sans permission",
+    "ss-label":         "Captures d'écran",
+    "ss-h2":            "Découvrez FotoVault Pro en action",
+    "ss-sub":           "Interface claire et intuitive, avec statistiques en temps réel",
+    "feat-label":       "Fonctionnalités",
+    "feat-h2":          "Tout ce dont vous avez besoin pour votre collection",
+    "f1-t":             "Organisation automatique par date",
+    "f1-p":             "Crée des dossiers par année et mois à partir des métadonnées EXIF de chaque photo ou vidéo.",
+    "f2-t":             "Détection de doublons exacts",
+    "f2-p":             "Compare les fichiers octet par octet avec SHA-256. Zéro faux positif.",
+    "f3-t":             "Images similaires (pHash)",
+    "f3-p":             "Trouve des photos quasi identiques même si elles ont un nom ou une taille différents.",
+    "f4-t":             "Détection de photos floues",
+    "f4-p":             "Identifie les images floues et les sépare automatiquement pour révision.",
+    "f5-t":             "Conversion HEIC / HEIF",
+    "f5-p":             "Convertit le format natif iPhone en JPG compatible avec tout système.",
+    "f6-t":             "Correction de rotation",
+    "f6-p":             "Corrige automatiquement les vidéos et images pivotées sans perte de qualité.",
+    "f7-t":             "Corbeille Android",
+    "f7-p":             "Détecte et nettoie les fichiers de la corbeille cachée des appareils Android.",
+    "f8-t":             "Rapport PDF",
+    "f8-p":             "Génère un rapport complet de tout ce que l'outil a effectué lors de chaque session.",
+    "f9-t":             "3 modes de travail",
+    "f9-p":             "<strong>Déplacer, Copier ou Simuler</strong> — testez sans risque avant de toucher quoi que ce soit.",
+    "cl-label":         "Historique des versions",
+    "cl-h2":            "Toujours en amélioration",
+    "cl-sub":           "FotoVault Pro est régulièrement mis à jour avec de nouvelles fonctionnalités et corrections",
+    "pr-label":         "Tarifs",
+    "pr-h2":            "Choisissez votre licence",
+    "pr-sub":           "Commencez gratuitement avec la démo, sans carte de crédit",
+    "p1-plan":          "Démo gratuite",
+    "p1-desc":          "Testez toutes les fonctionnalités sans limite de temps",
+    "p1-li1":           "Toutes les fonctionnalités incluses",
+    "p1-li2":           "Sans inscription",
+    "p1-li4":           "Mode Simuler pour voir sans risque",
+    "p1-btn":           "⬇ Télécharger la démo",
+    "badge-popular":    "Le plus populaire",
+    "p2-plan":          "Licence à vie",
+    "p2-desc":          "Paiement unique · Mises à jour futures incluses",
+    "p2-li1":           "Licence permanente",
+    "p2-li2":           "Mises à jour incluses pour toujours",
+    "p2-li3":           "Sans abonnement",
+    "p2-li4":           "Support par email",
+    "p2-btn":           "Acheter la licence — €19.99",
+    "p3-plan":          "Licence 30 jours",
+    "p3-desc":          "Paiement unique · Accès complet pendant 30 jours",
+    "p3-li2":           "Valable 30 jours dès l'activation",
+    "p3-li4":           "Téléchargement immédiat après paiement",
+    "p3-btn":           "Obtenir la licence 30 jours",
+    "faq-h2":           "Questions fréquentes",
+    "faq-q1":           "Windows affiche \"Windows a protégé votre PC\". Est-ce sûr ?",
+    "faq-a1":           "Oui, c'est totalement sûr. Cet avertissement apparaît avec <strong>tout logiciel indépendant</strong> sans certificat de signature de code (très coûteux). Pour continuer :<ol><li>Cliquez sur <strong>\"Informations complémentaires\"</strong></li><li>Puis sur <strong>\"Exécuter quand même\"</strong></li></ol>FotoVault Pro n'accède pas à internet, ne collecte pas de données et ne supprime jamais de fichiers sans votre permission.",
+    "faq-q2":           "FotoVault Pro peut-il supprimer mes photos à mon insu ?",
+    "faq-a2":           "Non. Le programme <strong>ne supprime jamais les fichiers source</strong>. En mode Déplacer, il déplace le fichier ; en mode Copier, il garde l'original intact. De plus, le <strong>mode Simuler</strong> vous permet de voir exactement ce qu'il ferait avant d'exécuter quoi que ce soit.",
+    "faq-q3":           "Fonctionne-t-il avec les photos iPhone (HEIC) ?",
+    "faq-a3":           "Oui. FotoVault Pro convertit automatiquement les fichiers HEIC/HEIF d'iPhone en JPG standard, sans logiciel supplémentaire.",
+    "faq-q4":           "Dois-je installer Python, .NET ou un autre programme ?",
+    "faq-a4":           "Non. FotoVault Pro est un exécutable <strong>autonome</strong>. Il ne nécessite aucun logiciel supplémentaire ni connexion internet.",
+    "faq-q5":           "Quelle est la différence entre la démo et la version complète ?",
+    "faq-a5":           "La démo inclut toutes les fonctionnalités du programme. La licence débloque l'utilisation sans restrictions à des fins professionnelles ou commerciales et donne accès aux futures versions sans coût supplémentaire.",
+    "faq-q6":           "Comment acheter la licence ?",
+    "faq-a6":           "C'est immédiat et sans inscription préalable. Cliquez sur le bouton d'achat et vous serez redirigé vers la page de paiement sécurisé (Payhip). Une fois le paiement effectué, <strong>l'application et votre licence se téléchargent automatiquement</strong> depuis cette même page. Pas besoin de contacter qui que ce soit.",
+    "cta-h2":           "Prêt à organiser votre collection une bonne fois pour toutes ?",
+    "cta-p":            "Téléchargez la démo gratuitement maintenant. Sans inscription, sans carte, sans limite de temps."
+  },
+  de: {
+    "nav-features":     "Funktionen",
+    "nav-screenshots":  "Screenshots",
+    "nav-whats-new":    "Neuigkeiten",
+    "nav-pricing":      "Preise",
+    "nav-download":     "Demo herunterladen",
+    "dl-free-on":       "Kostenlose Demo herunterladen auf",
+    "hero-badge":       "✦ Version 10.3.0 · Windows 10/11",
+    "hero-h1":          "Organisiere und schütze<br /><span>deine Erinnerungen</span>, ohne etwas zu verlieren",
+    "hero-p":           "FotoVault Pro sortiert automatisch tausende Fotos und Videos nach Datum, trennt Duplikate, ähnliche Bilder und unscharfe Fotos in separate Ordner, konvertiert HEIC und korrigiert Ausrichtungen. <strong>Es löscht niemals eine Datei.</strong>",
+    "meta-1":           "Keine Abhängigkeiten nötig",
+    "meta-2":           "Löscht keine Dateien",
+    "meta-3":           "6 Sprachen verfügbar",
+    "meta-4":           "Keine Abonnements",
+    "security-notice":  "<strong>Windows zeigt eine Sicherheitswarnung?</strong> Das ist bei unabhängiger Software normal. Klicke auf <strong>\"Weitere Informationen\"</strong> und dann auf <strong>\"Trotzdem ausführen\"</strong>. Deine Privatsphäre und deine Fotos sind vollständig geschützt. <a href=\"#faq\" style=\"color:var(--teal)\">Mehr erfahren →</a>",
+    "stat-1":           "Arbeitsmodi",
+    "stat-2":           "Exakte Duplikaterkennung",
+    "stat-3":           "Ähnliche Bilder erkennen",
+    "stat-4":           "Native iPhone-Konvertierung",
+    "stat-5":           "Ohne Erlaubnis gelöschte Dateien",
+    "ss-label":         "Screenshots",
+    "ss-h2":            "Sieh FotoVault Pro in Aktion",
+    "ss-sub":           "Klare und intuitive Oberfläche mit Echtzeit-Statistiken",
+    "feat-label":       "Funktionen",
+    "feat-h2":          "Alles, was du für deine Sammlung brauchst",
+    "f1-t":             "Automatische Datumsorganisation",
+    "f1-p":             "Erstellt Ordner nach Jahr und Monat aus den EXIF-Metadaten jedes Fotos oder Videos.",
+    "f2-t":             "Exakte Duplikaterkennung",
+    "f2-p":             "Vergleicht Dateien Byte für Byte mit SHA-256. Null Falschmeldungen.",
+    "f3-t":             "Ähnliche Bilder (pHash)",
+    "f3-p":             "Findet nahezu identische Fotos, auch wenn sie unterschiedliche Namen oder Größen haben.",
+    "f4-t":             "Erkennung unscharfer Fotos",
+    "f4-p":             "Erkennt unscharfe Bilder und trennt sie automatisch zur Überprüfung.",
+    "f5-t":             "HEIC / HEIF-Konvertierung",
+    "f5-p":             "Konvertiert das native iPhone-Format in systemkompatibles JPG.",
+    "f6-t":             "Ausrichtungskorrektur",
+    "f6-p":             "Korrigiert automatisch gedrehte Videos und Bilder ohne Qualitätsverlust.",
+    "f7-t":             "Android-Papierkorb",
+    "f7-p":             "Erkennt und bereinigt versteckte Papierkorb-Dateien von Android-Geräten.",
+    "f8-t":             "PDF-Bericht",
+    "f8-p":             "Erstellt einen vollständigen Bericht über alles, was das Tool in jeder Sitzung getan hat.",
+    "f9-t":             "3 Arbeitsmodi",
+    "f9-p":             "<strong>Verschieben, Kopieren oder Simulieren</strong> — teste risikofrei, bevor du etwas änderst.",
+    "cl-label":         "Versionsgeschichte",
+    "cl-h2":            "Immer besser",
+    "cl-sub":           "FotoVault Pro wird regelmäßig mit neuen Funktionen und Fehlerbehebungen aktualisiert",
+    "pr-label":         "Preise",
+    "pr-h2":            "Wähle deine Lizenz",
+    "pr-sub":           "Starte kostenlos mit der Demo, keine Kreditkarte erforderlich",
+    "p1-plan":          "Kostenlose Demo",
+    "p1-desc":          "Teste alle Funktionen ohne Zeitlimit",
+    "p1-li1":           "Alle Funktionen enthalten",
+    "p1-li2":           "Ohne Registrierung",
+    "p1-li4":           "Simulationsmodus zum risikofreien Vorschauen",
+    "p1-btn":           "⬇ Demo herunterladen",
+    "badge-popular":    "Am beliebtesten",
+    "p2-plan":          "Lebenslange Lizenz",
+    "p2-desc":          "Einmalzahlung · Zukünftige Updates inklusive",
+    "p2-li1":           "Dauerhafte Lizenz",
+    "p2-li2":           "Updates für immer inklusive",
+    "p2-li3":           "Kein Abonnement",
+    "p2-li4":           "E-Mail-Support",
+    "p2-btn":           "Lizenz kaufen — €19.99",
+    "p3-plan":          "30-Tage-Lizenz",
+    "p3-desc":          "Einmalzahlung · Voller Zugang für 30 Tage",
+    "p3-li2":           "Gültig 30 Tage ab Aktivierung",
+    "p3-li4":           "Sofortiger Download nach Zahlung",
+    "p3-btn":           "30-Tage-Lizenz erhalten",
+    "faq-h2":           "Häufig gestellte Fragen",
+    "faq-q1":           "Windows zeigt \"Windows hat Ihren PC geschützt\". Ist das sicher?",
+    "faq-a1":           "Ja, es ist völlig sicher. Diese Warnung erscheint bei <strong>jeder unabhängigen Software</strong> ohne Code-Signing-Zertifikat (das sehr teuer ist). Um fortzufahren:<ol><li>Klicke auf <strong>\"Weitere Informationen\"</strong></li><li>Dann auf <strong>\"Trotzdem ausführen\"</strong></li></ol>FotoVault Pro greift nicht auf das Internet zu, sammelt keine Daten und löscht niemals Dateien ohne deine Erlaubnis.",
+    "faq-q2":           "Kann FotoVault Pro meine Fotos ohne mein Wissen löschen?",
+    "faq-a2":           "Nein. Das Programm <strong>löscht niemals Dateien aus der Quelle</strong>. Im Verschieben-Modus wird die Datei verschoben; im Kopieren-Modus bleibt das Original intakt. Der <strong>Simulations-Modus</strong> zeigt dir genau, was passieren würde, bevor etwas ausgeführt wird.",
+    "faq-q3":           "Funktioniert es mit iPhone-Fotos (HEIC)?",
+    "faq-a3":           "Ja. FotoVault Pro konvertiert automatisch HEIC/HEIF-Dateien vom iPhone in Standard-JPG, ohne zusätzliche Software.",
+    "faq-q4":           "Muss ich Python, .NET oder ein anderes Programm installieren?",
+    "faq-a4":           "Nein. FotoVault Pro ist eine <strong>eigenständige</strong> ausführbare Datei. Es benötigt keine zusätzliche Software oder Internetverbindung.",
+    "faq-q5":           "Was ist der Unterschied zwischen Demo und Vollversion?",
+    "faq-a5":           "Die Demo enthält alle Programmfunktionen. Die Lizenz schaltet die unbegrenzte Nutzung für professionelle oder kommerzielle Zwecke frei und gibt Zugang zu zukünftigen Versionen ohne Aufpreis.",
+    "faq-q6":           "Wie kaufe ich die Lizenz?",
+    "faq-a6":           "Es ist sofort und ohne vorherige Registrierung. Klicke auf den Kaufen-Button und du wirst zur sicheren Zahlungsseite (Payhip) weitergeleitet. Nach Zahlungsabschluss <strong>wird die App und deine Lizenz automatisch heruntergeladen</strong>. Du musst niemanden kontaktieren oder auf eine E-Mail warten.",
+    "cta-h2":           "Bereit, deine Sammlung endlich zu ordnen?",
+    "cta-p":            "Lade jetzt die kostenlose Demo herunter. Ohne Registrierung, ohne Karte, ohne Zeitlimit."
+  },
+  it: {
+    "nav-features":     "Funzioni",
+    "nav-screenshots":  "Screenshot",
+    "nav-whats-new":    "Novità",
+    "nav-pricing":      "Prezzi",
+    "nav-download":     "Scarica Demo",
+    "dl-free-on":       "Scarica la Demo Gratis su",
+    "hero-badge":       "✦ Versione 10.3.0 · Windows 10/11",
+    "hero-h1":          "Organizza e proteggi<br /><span>i tuoi ricordi</span>, senza perdere nulla",
+    "hero-p":           "FotoVault Pro ordina automaticamente migliaia di foto e video per data, separa duplicati, simili e sfocate in cartelle diverse, converte HEIC e corregge le rotazioni. <strong>Non elimina mai nessun file.</strong>",
+    "meta-1":           "Nessuna dipendenza richiesta",
+    "meta-2":           "Non elimina i tuoi file",
+    "meta-3":           "6 lingue disponibili",
+    "meta-4":           "Nessun pagamento ricorrente",
+    "security-notice":  "<strong>Windows mostra un avviso di sicurezza?</strong> È normale per il software indipendente. Clicca su <strong>\"Ulteriori informazioni\"</strong> e poi su <strong>\"Esegui comunque\"</strong>. La tua privacy e le tue foto sono completamente al sicuro. <a href=\"#faq\" style=\"color:var(--teal)\">Scopri di più →</a>",
+    "stat-1":           "Modalità di lavoro",
+    "stat-2":           "Rilevamento duplicati esatto",
+    "stat-3":           "Rilevamento immagini simili",
+    "stat-4":           "Conversione iPhone nativa",
+    "stat-5":           "File eliminati senza permesso",
+    "ss-label":         "Screenshot",
+    "ss-h2":            "Guarda FotoVault Pro in azione",
+    "ss-sub":           "Interfaccia chiara e intuitiva, con statistiche in tempo reale",
+    "feat-label":       "Funzioni",
+    "feat-h2":          "Tutto ciò di cui hai bisogno per la tua collezione",
+    "f1-t":             "Organizzazione automatica per data",
+    "f1-p":             "Crea cartelle per anno e mese dai metadati EXIF di ogni foto o video.",
+    "f2-t":             "Rilevamento duplicati esatti",
+    "f2-p":             "Confronta i file byte per byte con SHA-256. Zero falsi positivi.",
+    "f3-t":             "Immagini simili (pHash)",
+    "f3-p":             "Trova foto quasi identiche anche se hanno nome o dimensioni diverse.",
+    "f4-t":             "Rilevamento foto sfocate",
+    "f4-p":             "Identifica le immagini sfocate e le separa automaticamente per la revisione.",
+    "f5-t":             "Conversione HEIC / HEIF",
+    "f5-p":             "Converte il formato nativo iPhone in JPG compatibile con qualsiasi sistema.",
+    "f6-t":             "Correzione rotazione",
+    "f6-p":             "Corregge automaticamente video e immagini ruotati senza perdita di qualità.",
+    "f7-t":             "Cestino Android",
+    "f7-p":             "Rileva e pulisce i file del cestino nascosto dei dispositivi Android.",
+    "f8-t":             "Report PDF",
+    "f8-p":             "Genera un report completo di tutto ciò che lo strumento ha fatto in ogni sessione.",
+    "f9-t":             "3 modalità di lavoro",
+    "f9-p":             "<strong>Sposta, Copia o Simula</strong> — prova senza rischi prima di toccare qualcosa.",
+    "cl-label":         "Cronologia versioni",
+    "cl-h2":            "Sempre in miglioramento",
+    "cl-sub":           "FotoVault Pro viene aggiornato regolarmente con nuove funzioni e correzioni",
+    "pr-label":         "Prezzi",
+    "pr-h2":            "Scegli la tua licenza",
+    "pr-sub":           "Inizia gratis con la demo, senza carta di credito",
+    "p1-plan":          "Demo gratuita",
+    "p1-desc":          "Prova tutte le funzioni senza limiti di tempo",
+    "p1-li1":           "Tutte le funzioni incluse",
+    "p1-li2":           "Senza registrazione",
+    "p1-li4":           "Modalità Simula per vedere senza rischi",
+    "p1-btn":           "⬇ Scarica Demo",
+    "badge-popular":    "Più popolare",
+    "p2-plan":          "Licenza a vita",
+    "p2-desc":          "Pagamento unico · Aggiornamenti futuri inclusi",
+    "p2-li1":           "Licenza permanente",
+    "p2-li2":           "Aggiornamenti inclusi per sempre",
+    "p2-li3":           "Senza abbonamento",
+    "p2-li4":           "Supporto via email",
+    "p2-btn":           "Acquista licenza — €19.99",
+    "p3-plan":          "Licenza 30 giorni",
+    "p3-desc":          "Pagamento unico · Accesso completo per 30 giorni",
+    "p3-li2":           "Valida 30 giorni dall'attivazione",
+    "p3-li4":           "Download immediato dopo il pagamento",
+    "p3-btn":           "Ottieni licenza 30 giorni",
+    "faq-h2":           "Domande frequenti",
+    "faq-q1":           "Windows mostra \"Windows ha protetto il tuo PC\". È sicuro?",
+    "faq-a1":           "Sì, è completamente sicuro. Questo avviso appare con <strong>qualsiasi software indipendente</strong> privo di certificato di firma del codice (molto costoso). Per continuare:<ol><li>Clicca su <strong>\"Ulteriori informazioni\"</strong></li><li>Poi su <strong>\"Esegui comunque\"</strong></li></ol>FotoVault Pro non accede a internet, non raccoglie dati e non elimina mai file senza il tuo permesso.",
+    "faq-q2":           "FotoVault Pro può eliminare le mie foto senza che io lo sappia?",
+    "faq-a2":           "No. Il programma <strong>non elimina mai i file dall'origine</strong>. In modalità Sposta, trasferisce il file; in modalità Copia, mantiene l'originale intatto. La <strong>modalità Simula</strong> ti permette di vedere esattamente cosa farebbe prima di eseguire qualsiasi operazione.",
+    "faq-q3":           "Funziona con le foto iPhone (HEIC)?",
+    "faq-a3":           "Sì. FotoVault Pro converte automaticamente i file HEIC/HEIF di iPhone in JPG standard, senza software aggiuntivo.",
+    "faq-q4":           "Devo installare Python, .NET o un altro programma?",
+    "faq-a4":           "No. FotoVault Pro è un eseguibile <strong>autonomo</strong>. Non richiede software aggiuntivo né connessione internet.",
+    "faq-q5":           "Qual è la differenza tra la demo e la versione completa?",
+    "faq-a5":           "La demo include tutte le funzioni del programma. La licenza sblocca l'uso illimitato per scopi professionali o commerciali e dà accesso alle versioni future senza costi aggiuntivi.",
+    "faq-q6":           "Come acquisto la licenza?",
+    "faq-a6":           "È immediato e senza registrazione previa. Clicca sul pulsante di acquisto e verrai reindirizzato alla pagina di pagamento sicuro (Payhip). Una volta completato il pagamento, <strong>l'app e la tua licenza vengono scaricate automaticamente</strong> da quella stessa pagina. Non devi contattare nessuno né aspettare email.",
+    "cta-h2":           "Pronto a ordinare la tua collezione una volta per tutte?",
+    "cta-p":            "Scarica ora la demo gratuita. Senza registrazione, senza carta, senza limiti di tempo."
+  },
+  pt: {
+    "nav-features":     "Funcionalidades",
+    "nav-screenshots":  "Capturas",
+    "nav-whats-new":    "Novidades",
+    "nav-pricing":      "Preços",
+    "nav-download":     "Baixar Demo",
+    "dl-free-on":       "Baixar Demo Grátis em",
+    "hero-badge":       "✦ Versão 10.3.0 · Windows 10/11",
+    "hero-h1":          "Organize e proteja<br /><span>as suas memórias</span>, sem perder nada",
+    "hero-p":           "FotoVault Pro classifica automaticamente milhares de fotos e vídeos por data, separa duplicados, semelhantes e desfocados em pastas distintas, converte HEIC e corrige rotações. <strong>Nunca elimina nenhum ficheiro.</strong>",
+    "meta-1":           "Sem dependências necessárias",
+    "meta-2":           "Não apaga os seus ficheiros",
+    "meta-3":           "6 idiomas disponíveis",
+    "meta-4":           "Sem pagamentos recorrentes",
+    "security-notice":  "<strong>O Windows mostra um aviso de segurança?</strong> É normal em software independente. Clique em <strong>\"Mais informações\"</strong> e depois em <strong>\"Executar mesmo assim\"</strong>. A sua privacidade e as suas fotos estão completamente seguras. <a href=\"#faq\" style=\"color:var(--teal)\">Saber mais →</a>",
+    "stat-1":           "Modos de trabalho",
+    "stat-2":           "Deteção exata de duplicados",
+    "stat-3":           "Deteção de imagens semelhantes",
+    "stat-4":           "Conversão iPhone nativa",
+    "stat-5":           "Ficheiros eliminados sem permissão",
+    "ss-label":         "Capturas de ecrã",
+    "ss-h2":            "Veja FotoVault Pro em ação",
+    "ss-sub":           "Interface clara e intuitiva, com estatísticas em tempo real",
+    "feat-label":       "Funcionalidades",
+    "feat-h2":          "Tudo o que precisa para a sua coleção",
+    "f1-t":             "Organização automática por data",
+    "f1-p":             "Cria pastas por ano e mês a partir dos metadados EXIF de cada foto ou vídeo.",
+    "f2-t":             "Deteção de duplicados exatos",
+    "f2-p":             "Compara ficheiros byte a byte com SHA-256. Zero falsos positivos.",
+    "f3-t":             "Imagens semelhantes (pHash)",
+    "f3-p":             "Encontra fotos quase idênticas mesmo que tenham nome ou tamanho diferente.",
+    "f4-t":             "Deteção de fotos desfocadas",
+    "f4-p":             "Identifica imagens sem foco e separa-as automaticamente para revisão.",
+    "f5-t":             "Conversão HEIC / HEIF",
+    "f5-p":             "Converte o formato nativo do iPhone para JPG compatível com qualquer sistema.",
+    "f6-t":             "Correção de rotação",
+    "f6-p":             "Corrige automaticamente vídeos e imagens rodados sem perda de qualidade.",
+    "f7-t":             "Lixo Android",
+    "f7-p":             "Deteta e limpa os ficheiros da lixeira oculta de dispositivos Android.",
+    "f8-t":             "Relatório PDF",
+    "f8-p":             "Gera um relatório completo de tudo o que a ferramenta fez em cada sessão.",
+    "f9-t":             "3 modos de trabalho",
+    "f9-p":             "<strong>Mover, Copiar ou Simular</strong> — teste sem risco antes de tocar em qualquer coisa.",
+    "cl-label":         "Histórico de versões",
+    "cl-h2":            "Sempre a melhorar",
+    "cl-sub":           "FotoVault Pro é atualizado regularmente com novas funcionalidades e correções",
+    "pr-label":         "Preços",
+    "pr-h2":            "Escolha a sua licença",
+    "pr-sub":           "Comece grátis com a demo, sem cartão de crédito",
+    "p1-plan":          "Demo gratuita",
+    "p1-desc":          "Experimente todas as funcionalidades sem limite de tempo",
+    "p1-li1":           "Todas as funcionalidades incluídas",
+    "p1-li2":           "Sem registo",
+    "p1-li4":           "Modo Simular para ver sem risco",
+    "p1-btn":           "⬇ Baixar Demo",
+    "badge-popular":    "Mais popular",
+    "p2-plan":          "Licença vitalícia",
+    "p2-desc":          "Pagamento único · Atualizações futuras incluídas",
+    "p2-li1":           "Licença permanente",
+    "p2-li2":           "Atualizações incluídas para sempre",
+    "p2-li3":           "Sem subscrição",
+    "p2-li4":           "Suporte por email",
+    "p2-btn":           "Comprar licença — €19.99",
+    "p3-plan":          "Licença 30 dias",
+    "p3-desc":          "Pagamento único · Acesso completo durante 30 dias",
+    "p3-li2":           "Válida 30 dias após ativação",
+    "p3-li4":           "Download imediato após pagamento",
+    "p3-btn":           "Obter licença 30 dias",
+    "faq-h2":           "Perguntas frequentes",
+    "faq-q1":           "O Windows mostra \"O Windows protegeu o seu PC\". É seguro?",
+    "faq-a1":           "Sim, é completamente seguro. Este aviso aparece com <strong>qualquer software independente</strong> sem certificado de assinatura de código (muito caro). Para continuar:<ol><li>Clique em <strong>\"Mais informações\"</strong></li><li>Depois em <strong>\"Executar mesmo assim\"</strong></li></ol>FotoVault Pro não acede à internet, não recolhe dados e nunca elimina ficheiros sem a sua permissão.",
+    "faq-q2":           "O FotoVault Pro pode apagar as minhas fotos sem eu saber?",
+    "faq-a2":           "Não. O programa <strong>nunca elimina ficheiros da origem</strong>. No modo Mover, transfere o ficheiro; no modo Copiar, mantém o original intacto. O <strong>modo Simular</strong> permite ver exatamente o que faria antes de executar qualquer operação.",
+    "faq-q3":           "Funciona com fotos iPhone (HEIC)?",
+    "faq-a3":           "Sim. FotoVault Pro converte automaticamente ficheiros HEIC/HEIF do iPhone para JPG padrão, sem software adicional.",
+    "faq-q4":           "Preciso de instalar Python, .NET ou outro programa?",
+    "faq-a4":           "Não. FotoVault Pro é um executável <strong>autónomo</strong>. Não requer software adicional nem ligação à internet.",
+    "faq-q5":           "Qual é a diferença entre a demo e a versão completa?",
+    "faq-a5":           "A demo inclui todas as funcionalidades do programa. A licença desbloqueia o uso sem restrições para fins profissionais ou comerciais e dá acesso a versões futuras sem custo adicional.",
+    "faq-q6":           "Como compro a licença?",
+    "faq-a6":           "É imediato e sem registo prévio. Clique no botão de compra e será redirecionado para a página de pagamento seguro (Payhip). Após o pagamento, <strong>a aplicação e a sua licença são transferidas automaticamente</strong> a partir dessa mesma página. Não precisa de contactar ninguém nem aguardar emails.",
+    "cta-h2":           "Pronto para organizar a sua coleção de uma vez por todas?",
+    "cta-p":            "Baixe agora a demo gratuita. Sem registo, sem cartão, sem limite de tempo."
+  }
+};
+
+const FLAGS = { es: "🇪🇸", en: "🇬🇧", fr: "🇫🇷", de: "🇩🇪", it: "🇮🇹", pt: "🇵🇹" };
+
+function switchLang(lang) {
+  const t = TRANSLATIONS[lang];
+  if (!t) return;
+
+  document.querySelectorAll("[data-i18n]").forEach(el => {
+    const key = el.getAttribute("data-i18n");
+    if (t[key] !== undefined) el.textContent = t[key];
+  });
+
+  document.querySelectorAll("[data-i18n-html]").forEach(el => {
+    const key = el.getAttribute("data-i18n-html");
+    if (t[key] !== undefined) el.innerHTML = t[key];
+  });
+
+  const flagEl = document.getElementById("lang-flag");
+  if (flagEl) flagEl.textContent = FLAGS[lang];
+
+  document.querySelectorAll(".lang-option").forEach(opt => {
+    opt.classList.toggle("active", opt.getAttribute("onclick") === `switchLang('${lang}')`);
+  });
+
+  localStorage.setItem("fvp-lang", lang);
+  document.documentElement.lang = lang;
+}
+
+(function () {
+  const saved = localStorage.getItem("fvp-lang");
+  const browser = (navigator.language || "es").slice(0, 2).toLowerCase();
+  const lang = (saved && TRANSLATIONS[saved]) ? saved : (TRANSLATIONS[browser] ? browser : "es");
+  if (lang !== "es") switchLang(lang);
+  else {
+    const flagEl = document.getElementById("lang-flag");
+    if (flagEl) flagEl.textContent = FLAGS["es"];
+    document.querySelectorAll(".lang-option").forEach(opt => {
+      opt.classList.toggle("active", opt.getAttribute("onclick") === "switchLang('es')");
+    });
+  }
+})();
+</script>
 
 </body>
 </html>
